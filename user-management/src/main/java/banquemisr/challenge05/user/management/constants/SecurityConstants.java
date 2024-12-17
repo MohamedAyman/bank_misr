@@ -1,0 +1,9 @@
+package banquemisr.challenge05.user.management.constants;
+
+public class SecurityConstants {
+    public static String HEADER_STRING = "Authorization";
+    public static String TOKEN_PREFIX = "Bearer ";
+    public static String getTokenSecret() {
+        return "38a9631bee659f5153ca6dc2fa424cae19b2f2fd0b2d77435f4036100bbfe77c0276308840f271f508335bf18fd77fd92cae454c5a5cdabcf4c8f2f1ab227a8c3056aa76a2e7443bfd93ee16229e4b898eb0a2ef18a153e16b67a5b1aea7ae3fb5a2ee68e9a282b35d5a1f94d13b23045eb459b516c1dc9c544f4fd24642526d8c072ad885d12097580387020b43af3951dc45f1bdc4ac9835f8b2791bd16ab563de8f17af8218da73272cfcc56a246e748c6054184fa363df1b2de209e44137dcbb1fb89a09cad8424542aceeee7d92c566b0a8090374a636484a7cd603e676646e6e99408e382ab15929089702d8ed5ee3c4b423724e2bec2b72d69db5f997";
+    }
+}

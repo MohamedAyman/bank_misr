@@ -11,12 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationService {
     @Autowired
-    private JavaMailSender mailSender;
+    JavaMailSender mailSender;
 
-    public void sendEmail(MailRequest mailRequest) throws MessagingException {
+    public String sendEmail(MailRequest mailRequest) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-
         String htmlContent = generateHtmlContent(mailRequest.getDescription(), mailRequest.getStatus(), mailRequest.getDueDate().toString());
 
         helper.setTo(mailRequest.getTo());
@@ -24,6 +23,7 @@ public class NotificationService {
         helper.setText(htmlContent, true);
 
         mailSender.send(mimeMessage);
+        return "Message Sent";
     }
 
 

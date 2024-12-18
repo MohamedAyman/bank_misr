@@ -4,6 +4,7 @@ import banquemisr.challenge05.task.management.DTO.Status;
 import banquemisr.challenge05.task.management.DTO.Task;
 import banquemisr.challenge05.task.management.entities.StatusEntity;
 import banquemisr.challenge05.task.management.entities.TaskEntity;
+import banquemisr.challenge05.task.management.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
@@ -20,7 +21,7 @@ public class TaskMapper {
         task.setTitle(taskEntity.getTitle());
         task.setDescription(taskEntity.getDescription());
         task.setStatus(status);
-        task.setUserId(taskEntity.getUserId());
+        task.setUser(UserMapper.toDTO(taskEntity.getUser()));
         task.setPriorityTask(taskEntity.getPriorityTask());
         task.setDueDate(taskEntity.getDueDate());
         task.setCreatedAt(taskEntity.getCreatedAt());
@@ -34,11 +35,12 @@ public class TaskMapper {
         status.setId(task.getStatus().getId());
         status.setStatusName(task.getStatus().getStatusName());
 
+
         taskEntity.setId(task.getId());
         taskEntity.setTitle(task.getTitle());
         taskEntity.setDescription(task.getDescription());
         taskEntity.setStatus(status);
-        taskEntity.setUserId(task.getUserId());
+        taskEntity.setUser(UserMapper.toEntity(task.getUser()));
         taskEntity.setPriorityTask(task.getPriorityTask());
         taskEntity.setDueDate(task.getDueDate());
         taskEntity.setCreatedAt(task.getCreatedAt());
@@ -55,7 +57,7 @@ public class TaskMapper {
         taskEntity.setTitle(task.getTitle() != null ? task.getTitle() : taskEntity.getTitle());
         taskEntity.setDescription(task.getDescription() != null ? task.getDescription() : taskEntity.getDescription());
         taskEntity.setStatus(status.getStatusName() != null ? status : taskEntity.getStatus());
-        taskEntity.setUserId(task.getUserId());
+        taskEntity.setUser(UserMapper.toEntity(task.getUser()));
         taskEntity.setPriorityTask(task.getPriorityTask());
         taskEntity.setDueDate(task.getDueDate() != null ? task.getCreatedAt() : taskEntity.getDueDate());
         taskEntity.setCreatedAt(task.getCreatedAt() != null ? task.getCreatedAt() : taskEntity.getCreatedAt());

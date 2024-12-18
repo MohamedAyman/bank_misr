@@ -13,46 +13,21 @@ services:
       - '3306:3306'
     volumes:
       - 'mysql_data:/var/lib/mysql'
-
-  user-management-app:
+  app:
     image: 'openjdk:17'
-    container_name: 'user-management-app'
-    build:
-      context: ./user-management
-      dockerfile: Dockerfile
+    container_name: 'app'
     environment:
       SPRING_DATASOURCE_URL: 'jdbc:mysql://mysql:3306/mydatabase'
       SPRING_DATASOURCE_USERNAME: 'myuser'
       SPRING_DATASOURCE_PASSWORD: 'secret'
+    build:
+      context: .
     ports:
       - '8080:8080'
-    depends_on:
-      - mysql
-
-  task-management-app:
-    image: 'openjdk:17'
-    container_name: 'task-management-app'
-    build:
-      context: ./task-management
-      dockerfile: Dockerfile
-    environment:
-      SPRING_DATASOURCE_URL: 'jdbc:mysql://mysql:3306/mydatabase'
-      SPRING_DATASOURCE_USERNAME: 'myuser'
-      SPRING_DATASOURCE_PASSWORD: 'secret'
-    ports:
       - '8081:8081'
-    depends_on:
-      - user-management-app
-      - mysql
-      -
-  notification-app:
-    image: 'openjdk:17'
-    container_name: 'notification-app'
-    build:
-      context: ./notification
-      dockerfile: Dockerfile
-    ports:
       - '8082:8082'
+    depends_on:
+      - mysql
 
 volumes:
   mysql_data:

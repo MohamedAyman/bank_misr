@@ -1,0 +1,323 @@
+{
+	"info": {
+		"_postman_id": "92bf16d4-a2c1-4967-915f-368378ab6fc5",
+		"name": "bank_misr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14927609"
+	},
+	"item": [
+		{
+			"name": "user login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/oauth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/oauth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/oauth/validate_token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiQURNSU4iLCJVc2VyTmFtZSI6ImFkbWluIiwiaWF0IjoxNzM0MzQ1MDc0LCJleHAiOjE3MzQzNTIyNzR9.0MH3zi3kMe_-5zp5p7b1zHjxn48heDdMqgxFYvoyefI\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/oauth/validate_token",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"validate_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9BRE1JTiIsIlVzZXJOYW1lIjoiYWRtaW4iLCJVc2VySWQiOjEsImlhdCI6MTczNDUzMTQwMCwiZXhwIjoxNzM0NTM4NjAwfQ.hOhwM91bbjMSfr0LIP3h-wn7ciG-8MguyGVbgkUZtyU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Task 99\",\n    \"description\": \"test555\",\n    \"status\": {\n        \"id\" : 1,\n        \"statusName\": \"TODO\"\n    },\n    \"user\": {\n        \"id\": 2\n    },\n    \"priorityTask\": 0,\n    \"dueDate\": \"2024-12-27T10:14:19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read all tasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9VU0VSIiwiVXNlck5hbWUiOiJ1c2VyIiwiVXNlcklkIjoyLCJpYXQiOjE3MzQ1MzAyOTcsImV4cCI6MTczNDUzNzQ5N30.BON_AK-4Ppfv26HpxLYhTMm1PeNg6RoIRHcoN8uy4Wo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9VU0VSIiwiVXNlck5hbWUiOiJ1c2VyIiwiVXNlcklkIjoyLCJpYXQiOjE3MzQ1MjA1MzgsImV4cCI6MTczNDUyNzczOH0.uARsqH60-EA6Jea7mecyF_zmnlTnAiApFPVaAmpH0dk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/tasks?title=Task 9",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Task 9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read one task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9VU0VSIiwiVXNlck5hbWUiOiJ1c2VyIiwiVXNlcklkIjoyLCJpYXQiOjE3MzQ1MjMwMjUsImV4cCI6MTczNDUzMDIyNX0.JM4wSMbemVHXNxWL4uGpZACfAjxRSkHJ1qB7SkCkWWA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9VU0VSIiwiVXNlck5hbWUiOiJ1c2VyIiwiVXNlcklkIjoyLCJpYXQiOjE3MzQ0NTE3MjQsImV4cCI6MTczNDQ1ODkyNH0.Ggwx8niGm9Mwr7nYfexaYQFVT_QCBuG91PqyWX2Su-8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/task/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9VU0VSIiwiVXNlck5hbWUiOiJ1c2VyIiwiVXNlcklkIjoyLCJpYXQiOjE3MzQ0NTE3MjQsImV4cCI6MTczNDQ1ODkyNH0.Ggwx8niGm9Mwr7nYfexaYQFVT_QCBuG91PqyWX2Su-8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/task/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9VU0VSIiwiVXNlck5hbWUiOiJ1c2VyIiwiVXNlcklkIjoyLCJpYXQiOjE3MzQ0NTE3MjQsImV4cCI6MTczNDQ1ODkyNH0.Ggwx8niGm9Mwr7nYfexaYQFVT_QCBuG91PqyWX2Su-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 5,\n    \"title\": \"Task 7\",\n    \"description\": \"Task 7 description\",\n    \"status\": {\n        \"id\" : 1,\n        \"statusName\": \"TODO\"\n    },\n    \"userId\": 2,\n    \"priorityTask\": 0,\n    \"dueDate\": \"2024-12-19T10:14:19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mail notification",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"to\": \"test@gmail.com\",\n    \"title\": \"Task 1\",\n    \"description\": \"Task updated\",\n    \"status\": \"on_going\",\n    \"dueDate\": \"2024-12-17T10:14:19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/send",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"send"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
